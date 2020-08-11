@@ -1,6 +1,4 @@
 import os
-os.system('git add . & git commit -m "更新"& git push -u origin master')
-
 import threading
 import requests
 import re
@@ -21,8 +19,7 @@ def get_num():
         'upgrade-insecure-requests': '1',
         'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36'
         }
-    url = 'https://v.qq.com/x/cover/mzc00200d8fkodt.html'
-    
+    url = 'https://v.qq.com/x/cover/mzc00200d8fkodt.html' 
     rt = requests.get(url,headers=headers)
     num = re_num.search(rt.text)
     return num.group(1)
@@ -32,17 +29,22 @@ def get_num():
 def fun_timer():
     num = get_num()
     with open('data.text','a') as f:
-        s = str(num)+' '+str(time.time())+'\n'
+        s = str(num)+','+str(time.time())+'\n'
         f.write(s)
         print(s)   #打印输出
     with open('data.text','r') as f:
         t = []
-        for data in f.readline():
-            t.append(data.split(' ')[0])
-    print(t)
+        for data in f.readlines():
+            try:
+                t.append(data.split(',')[0])
+            except:
+                pass
+    
     ts = ','.join(t)
-    with open('index.html','r') as f:
-        f.write(s1+ts+s2)
+    with open('index.html','w') as f:
+        temp = s1+ts+s2
+        print(temp)
+        f.write(str(temp))
     os.system('git add . & git commit -m "更新"& git push -u origin master')
     global timer  #定义变量
     timer = threading.Timer(60*15,fun_timer)   #60秒调用一次函数
