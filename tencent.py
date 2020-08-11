@@ -39,6 +39,7 @@ def fun_timer():
         t = []
         for data in f.readline():
             t.append(data.split(' ')[0])
+    print(t)
     ts = ','.join(t)
     with open('index.html','r') as f:
         f.write(s1+ts+s2)
