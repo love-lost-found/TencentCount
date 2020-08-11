@@ -45,7 +45,7 @@ def fun_timer():
         temp = s1+ts+s2
         print(temp)
         f.write(str(temp))
-    os.system('git add . & git commit -m "更新"& git push -u origin master')
+    os.system('git add . & git commit -m "更新" & git push -u origin master&')
     global timer  #定义变量
     timer = threading.Timer(60*15,fun_timer)   #60秒调用一次函数
     #定时器构造函数主要有2个参数，第一个参数为时间，第二个参数为函数名
@@ -115,7 +115,7 @@ $(document).ready(function() {
       type: 'area',
       name: 'USD to EUR',
       pointInterval:  900 * 1000,
-      pointStart: Date.UTC(2020, 8, 11,19),
+      pointStart: Date.UTC(2020, 8, 11,19,30),
       data: [
 """
 
