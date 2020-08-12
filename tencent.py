@@ -31,7 +31,7 @@ def fun_timer():
     with open('data.text','a') as f:
         s = str(num)+','+str(time.time())+'\n'
         f.write(s)
-        print(s)   #打印输出
+        
     with open('data.text','r') as f:
         t = []
         for data in f.readlines():
@@ -43,11 +43,14 @@ def fun_timer():
     ts = ','.join(t)
     with open('index.html','w') as f:
         temp = s1+ts+s2
-        print(temp)
+        
         f.write(str(temp))
-    os.system('git add . & git commit -m "更新" & git push -u origin master&')
+    os.system('git add .')
+    os.system('git commit -m "upload"')
+    os.system('git push -u origin master')
+    time.sleep(1)
     global timer  #定义变量
-    timer = threading.Timer(60*15,fun_timer)   #60秒调用一次函数
+    timer = threading.Timer(60*5,fun_timer)   #60秒调用一次函数
     #定时器构造函数主要有2个参数，第一个参数为时间，第二个参数为函数名
     timer.start()    #启用定时器
 
@@ -80,7 +83,7 @@ $(document).ready(function() {
    };
    var xAxis = {
       type: 'datetime',
-      minRange: 3600000/4 // 14 天
+      minRange: 3600000/12 // 14 天
    };
    var yAxis = {
       title: {
@@ -114,8 +117,8 @@ $(document).ready(function() {
    var series= [{
       type: 'area',
       name: 'USD to EUR',
-      pointInterval:  900 * 1000,
-      pointStart: Date.UTC(2020, 8, 11,19,30),
+      pointInterval:  300 * 1000,
+      pointStart: Date.UTC(2020, 8, 12,14,25),
       data: [
 """
 
