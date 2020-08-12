@@ -3,60 +3,6 @@ import threading
 import requests
 import re
 import time
-re_num = re.compile('interactionCount\" content="(.+?)\"')
-#定义函数
-def get_num():
-    headers = {
-        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
-        'accept-encoding': 'gzip, deflate, br',
-        'accept-language': 'en,zh-CN;q=0.9,zh;q=0.8',
-        'cache-control': 'no-cache',
-        'cookie': 'tvfe_boss_uuid=f46c9616ebd4d932; pgv_pvid=8752282767; ts_refer=www.baidu.com/link; ts_uid=131770696; login_remember=wx; pgv_pvi=4741858304; video_guid=587a541c2170f07d; video_platform=2; pgv_info=ssid=s2758728144; bucket_id=9231005; ts_last=v.qq.com/x/cover/mzc00200d8fkodt.html; ptag=; ad_play_index=58',
-        'pragma': 'no-cache',
-        'sec-fetch-mode': 'navigate',
-        'sec-fetch-site': 'same-origin',
-        'sec-fetch-user': '?1',
-        'upgrade-insecure-requests': '1',
-        'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36'
-        }
-    url = 'https://v.qq.com/x/cover/mzc00200d8fkodt.html' 
-    rt = requests.get(url,headers=headers)
-    num = re_num.search(rt.text)
-    return num.group(1)
-    
-       
-
-def fun_timer():
-    num = get_num()
-    with open('data.text','a') as f:
-        s = str(num)+','+str(time.time())+'\n'
-        f.write(s)
-        print(s)
-    with open('data.text','r') as f:
-        t = []
-        for data in f.readlines():
-            try:
-                t.append(data.split(',')[0])
-            except:
-                pass
-    
-    ts = ','.join(t)
-    with open('index.html','w') as f:
-        temp = s1+ts+s2
-        
-        f.write(str(temp))
-    os.system('git add .')
-    os.system('git commit -m "upload"')
-    os.system('git push -u origin master')
-    time.sleep(1)
-    global timer  #定义变量
-    timer = threading.Timer(60*5,fun_timer)   #60秒调用一次函数
-    #定时器构造函数主要有2个参数，第一个参数为时间，第二个参数为函数名
-    timer.start()    #启用定时器
-
-timer = threading.Timer(1,fun_timer)  #首次启动
-timer.start()
-
 
 s1 = """
 <html>
@@ -118,7 +64,7 @@ $(document).ready(function() {
       type: 'area',
       name: '播放量',
       pointInterval:  300 * 1000,
-      pointStart: Date.UTC(2020, 8, 12,14,25),
+      pointStart: Date.UTC(2020, 8, 12,15,15),
       data: [
 """
 
@@ -145,3 +91,55 @@ s2 = """
 </html>
 
 """
+
+re_num = re.compile('interactionCount\" content="(.+?)\"')
+#定义函数
+def get_num():
+    headers = {
+        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+        'accept-encoding': 'gzip, deflate, br',
+        'accept-language': 'en,zh-CN;q=0.9,zh;q=0.8',
+        'cache-control': 'no-cache',
+        'cookie': 'tvfe_boss_uuid=f46c9616ebd4d932; pgv_pvid=8752282767; ts_refer=www.baidu.com/link; ts_uid=131770696; login_remember=wx; pgv_pvi=4741858304; video_guid=587a541c2170f07d; video_platform=2; pgv_info=ssid=s2758728144; bucket_id=9231005; ts_last=v.qq.com/x/cover/mzc00200d8fkodt.html; ptag=; ad_play_index=58',
+        'pragma': 'no-cache',
+        'sec-fetch-mode': 'navigate',
+        'sec-fetch-site': 'same-origin',
+        'sec-fetch-user': '?1',
+        'upgrade-insecure-requests': '1',
+        'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36'
+        }
+    url = 'https://v.qq.com/x/cover/mzc00200d8fkodt.html' 
+    rt = requests.get(url,headers=headers)
+    num = re_num.search(rt.text)
+    return num.group(1)
+    
+       
+
+def fun_timer():
+    num = get_num()
+    with open('data.text','a') as f:
+        s = str(num)+','+str(time.time())+'\n'
+        f.write(s)
+        print(s)
+    with open('data.text','r') as f:
+        t = []
+        for data in f.readlines():
+            try:
+                t.append(data.split(',')[0])
+            except:
+                print('error')
+                pass
+    
+    ts = ','.join(t)
+    with open('index.html','w') as f:
+        temp = s1+ts+s2
+        
+        f.write(str(temp))
+    os.system('git add .')
+    os.system('git commit -m "upload"')
+    os.system('git push -u origin master')
+    time.sleep(300)
+    fun_timer()
+fun_timer()
+
+
