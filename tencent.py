@@ -100,7 +100,7 @@ def get_num():
         'accept-encoding': 'gzip, deflate, br',
         'accept-language': 'en,zh-CN;q=0.9,zh;q=0.8',
         'cache-control': 'no-cache',
-        'cookie': 'tvfe_boss_uuid=f46c9616ebd4d932; pgv_pvid=8752282767; ts_refer=www.baidu.com/link; ts_uid=131770696; login_remember=wx; pgv_pvi=4741858304; video_guid=587a541c2170f07d; video_platform=2; pgv_info=ssid=s2758728144; bucket_id=9231005; ts_last=v.qq.com/x/cover/mzc00200d8fkodt.html; ptag=; ad_play_index=58',
+        #'cookie': 'tvfe_boss_uuid=f46c9616ebd4d932; pgv_pvid=8752282767; ts_refer=www.baidu.com/link; ts_uid=131770696; login_remember=wx; pgv_pvi=4741858304; video_guid=587a541c2170f07d; video_platform=2; pgv_info=ssid=s2758728144; bucket_id=9231005; ts_last=v.qq.com/x/cover/mzc00200d8fkodt.html; ptag=; ad_play_index=58',
         'pragma': 'no-cache',
         'sec-fetch-mode': 'navigate',
         'sec-fetch-site': 'same-origin',
