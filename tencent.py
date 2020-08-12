@@ -116,7 +116,7 @@ $(document).ready(function() {
    };
    var series= [{
       type: 'area',
-      name: 'USD to EUR',
+      name: '播放量',
       pointInterval:  300 * 1000,
       pointStart: Date.UTC(2020, 8, 12,14,25),
       data: [
