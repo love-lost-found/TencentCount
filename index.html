@@ -23,7 +23,7 @@ $(document).ready(function() {
    };
    var xAxis = {
       type: 'datetime',
-      minRange: 3600000/4 // 14 天
+      minRange: 3600000/12 // 14 天
    };
    var yAxis = {
       title: {
@@ -57,10 +57,10 @@ $(document).ready(function() {
    var series= [{
       type: 'area',
       name: 'USD to EUR',
-      pointInterval:  900 * 1000,
-      pointStart: Date.UTC(2020, 8, 11,19,30),
+      pointInterval:  300 * 1000,
+      pointStart: Date.UTC(2020, 8, 12,14,25),
       data: [
-64341043,64858588,65906188,66587868,67761670,68480543
+101385562
 
          ]
       }

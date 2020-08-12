@@ -31,7 +31,7 @@ def fun_timer():
     with open('data.text','a') as f:
         s = str(num)+','+str(time.time())+'\n'
         f.write(s)
-        
+        print(s)
     with open('data.text','r') as f:
         t = []
         for data in f.readlines():
